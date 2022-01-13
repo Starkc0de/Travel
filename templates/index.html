@@ -1,0 +1,237 @@
+{% extends 'base_template.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Intro -->
+
+
+<div class="intro">
+	<div class="intro_background" style="background-image:url({% static 'images/intro.png'%})"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<div class="intro_container">
+					<div class="row">
+
+						<!-- Intro Item -->
+						<div class="col-lg-4 intro_col">
+							<div class="intro_item d-flex flex-row align-items-end justify-content-start">
+								<div class="intro_icon"><img src="{% static 'images/beach.svg'%}" alt=""></div>
+								<div class="intro_content">
+									<div class="intro_title">Top Destinations</div>
+									<div class="intro_subtitle">
+										<p>Nulla pretium tincidunt felis, nec.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Intro Item -->
+						<div class="col-lg-4 intro_col">
+							<div class="intro_item d-flex flex-row align-items-end justify-content-start">
+								<div class="intro_icon"><img src="{% static 'images/wallet.svg'%}" alt=""></div>
+								<div class="intro_content">
+									<div class="intro_title">The Best Prices</div>
+									<div class="intro_subtitle">
+										<p>Sollicitudin mauris lobortis in.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Intro Item -->
+						<div class="col-lg-4 intro_col">
+							<div class="intro_item d-flex flex-row align-items-end justify-content-start">
+								<div class="intro_icon"><img src="{% static 'images/suitcase.svg'%}" alt=""></div>
+								<div class="intro_content">
+									<div class="intro_title">Amazing Services</div>
+									<div class="intro_subtitle">
+										<p>Nulla pretium tincidunt felis, nec.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- Destinations -->
+
+<div class="destinations" id="destinations">
+	<div class="container">
+		<div class="row">
+			<div class="col text-center">
+				<div class="section_subtitle">simply amazing places</div>
+				<div class="section_title">
+					<h2>Popular Destinations</h2>
+				</div>
+			</div>
+		</div>
+
+		<div class="destinations_row">
+			
+				<div class="destinations_container row">
+					<!-- Destination -->
+					{% for item in data %}
+					<div class="destination col-md-4">
+						<div class="destination_image">
+							<img src="{{item.destination_img.url}}" alt="">
+							{% if item.special_offer %}
+							<div class="spec_offer text-center"><a href="#">Special Offer</a></div>
+							{% endif %}
+						</div>
+						<div class="destination_content">
+							<div class="destination_title"><a
+									href="{% url 'blogs:post' item.id item.slug %}">{{item.destination_name}}</a>
+							</div>
+							<div class="destination_subtitle">
+								<p>{{item.about_destination | truncatechars:50}}</p>
+							</div>
+							<div class="destination_price">From {{item.destination_rate }}</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			
+		</div>
+
+	</div>
+</div>
+    {# .... **Now the pagination section** .... #}
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="/?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+<!-- Testimonials -->
+
+<div class="testimonials" id="testimonials">
+	<div class="parallax_background parallax-window" data-parallax="scroll"
+		data-image-src="{% static 'images/testimonials.jpg'%}" data-speed="0.8"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col text-center">
+				<div class="section_subtitle">simply amazing places</div>
+				<div class="section_title">
+					<h2>Testimonials</h2>
+				</div>
+			</div>
+		</div>
+		<div class="row testimonials_row">
+			<div class="col">
+
+				<!-- Testimonials Slider -->
+				<div class="testimonials_slider_container">
+					<div class="owl-carousel owl-theme testimonials_slider">
+
+						<!-- Slide -->
+						{% for item in data %}
+						<div class="owl-item text-center">
+							<div class="testimonial"><p>{{item.Testimonials}}</p> </div>
+							<div class="testimonial_author">
+								<div
+									class="testimonial_author_content d-flex flex-row align-items-end justify-content-start">
+									<div>{{item.client_name}},</div>
+									<div>client</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+						<!-- Slide -->
+
+
+						<!-- Slide -->
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="test_nav">
+		<ul class="d-flex flex-column align-items-end justify-content-end">
+			<li><a href="#">City Breaks Clients<span>01</span></a></li>
+			<li><a href="#">Cruises Clients<span>02</span></a></li>
+			<li><a href="#">All Inclusive Clients<span>03</span></a></li>
+		</ul>
+	</div>
+</div>
+
+<!-- News -->
+
+<div class="news" id="news">
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-8">
+				<div class="news_container">
+
+					<!-- News Post -->
+					{% for item in data %}
+					<div class="news_post d-flex flex-md-row flex-column align-items-start justify-content-start">
+						<div class="news_post_image"><img src="{{item.latest_news_photo.url}}" alt=""></div>
+						<div class="news_post_content" style="
+						padding-top: 0;
+					">
+							<div class="news_post_date d-flex flex-row align-items-end justify-content-start">
+								<div>{{item.latest_travelling_date}}</div>
+
+							</div>
+							<div class="news_post_title"><a href="#">{{item.about_destination | truncatechars:25}}</a></div>
+							<div class="news_post_category">
+								<ul>
+									<li><a href="#">lifestyle & travel</a></li>
+								</ul>
+							</div>
+							<div class="news_post_text">
+								<p>{{item.news_post_text | truncatechars:100 }}<a href="#">Read More</a></p>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+
+				</div>
+			</div>
+
+			<!-- News Sidebar -->
+			<div class="col-xl-4">
+				<div class="travello" style="
+				margin-top: 0;
+			">  
+					<div class="background_image" style="background-image:url({% static 'images/travello.jpg'%})"></div>
+					<div class="travello_content">
+						<div class="travello_content_inner">
+							<div></div>
+							<div></div>
+						</div>
+					</div>
+					<div class="travello_container">
+						<a href="#">
+							<div class="d-flex flex-column align-items-center justify-content-end">
+								<span class="travello_title">Get a 20% Discount</span>
+								<span class="travello_subtitle">Buy Your Vacation Online Now</span>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

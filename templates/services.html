@@ -1,0 +1,27 @@
+{% extends 'base_template.html' %}
+{% load static %}
+{% block content %}
+
+
+<!-- services   -->
+
+
+<div class="container">
+<div class="row">
+{% for item in srv %}
+<div class='col-lg-3'>
+  <div class="card" style="width: 18rem;">
+    <img src="{{item.img.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{item.title}},</h5>
+      <p class="card-text">{{item.name}},</p>
+
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</div>
+{% endfor %}
+</div>
+</div>
+
+{% endblock %}

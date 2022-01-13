@@ -1,0 +1,61 @@
+{% extends 'base_template.html' %}
+{% load static %}
+{% block content %}
+
+
+<div>
+	{% for msg in messages %}
+	<!-- <h3>{{ msg }}</h3> -->
+
+	<div class="alert alert-warning" role="alert">
+		<h4 class="alert-heading">{{ msg }}
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</h4>
+	</div>
+	{% endfor %}
+</div>
+
+<div class="container mt-5 mb-5">
+	<div class="sign-in">
+		<div class="d-flex justify-content-center">
+			<div class="col-md-8">
+				<div class="text-center">
+					<h5>WELCOME</h5>
+					<p class="login">Sign up and start your journey </p>
+				</div class="align-middle">
+				<form action="" method="post">
+					{% csrf_token %}
+					<div class="form">
+						<div class="form-floating mb-3">
+							<input class="form-control style" name="username" id="floatingInput">
+							<label for="id_user_name" class="labes">Username</label>
+						</div>
+						<div class="form-floating mb-3">
+							<input class="form-control style" name="email">
+							<label class="labes">Email</label>
+						</div>
+						<div class="form-floating mb-4">
+							<input class="form-control style" type="password" name="password1">
+							<label class="labes">Password</label>
+						</div>
+
+						<div class="form-floating mb-4">
+							<input class="form-control style" type="password" name="password2">
+							<label class="labes">Confirm Password</label>
+						</div>
+						<div>
+							<button class="btn btn-sign-up" type="submit">Registration</button>
+						</div>
+
+
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

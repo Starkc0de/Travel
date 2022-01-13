@@ -1,0 +1,117 @@
+{% extends 'base_template.html' %}
+{% load static %}
+{% block content %}
+
+<html lang="en">
+
+<head>
+	<title>Travello</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Travello template project">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css'%}">
+	<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css'%}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css'%}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/contact.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/contact_responsive.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/about.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/about_responsive.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/news.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/news_responsive.css'%}">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/destinations.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/destinations_responsive.css'%}">
+</head>
+
+
+<!-- Contact -->
+
+<div class="contact">
+	<div class="container">
+		<div class="d-flex justify-content-center">
+
+			<!-- Contact Form -->
+			<div class="col-lg-8">
+				<div class="contact_form_container">
+					<form method="POST" action="#" id="contact_form" class="contact_form">
+						<div class="mb-3">
+							<h3>Contact My Team</h3>
+						</div>
+						{% csrf_token %}
+						<div style="margin-bottom: 18px">
+							{% comment %} <input type="text" class="contact_input contact_input_name inpt"
+								placeholder="" required="required">{% endcomment %}
+							{{form.name}}<div class="input_border"></div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6" style="margin-bottom: 18px">
+								<div>
+									{% comment %}<input type="text" class="contact_input contact_input_email inpt"
+										placeholder="Your E-mail" required="required">{% endcomment %}
+									{{form.email}}<div class="input_border"></div>
+								</div>
+							</div>
+							<div class="col-lg-6" style="margin-bottom: 18px">
+								<div>
+									{% comment %}<input type="text" class="contact_input contact_input_subject inpt"
+										placeholder="Subject" required="required">{% endcomment %}
+									{{form.subject}}<div class="input_border">
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							{% comment %}<textarea class="contact_textarea contact_input inpt" placeholder="Message"
+								required="required"></textarea>{% endcomment %}
+							{{form.message}}<div class="input_border" style="bottom:3px"></div>
+						</div>
+						<button class="contact_button" type="submit">send</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container mt-5 mb-5">
+	<div class="mb-4">
+		<h2>Find Own Destination</h2>
+	</div>
+	<div class="d-flex justify-content-center">
+		<div class="mapouter">
+			<div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no"
+					marginheight="0" marginwidth="0"
+					src="https://maps.google.com/maps?width=800&amp;height=600&amp;hl=en&amp;q=gwalior&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a
+					href="https://www.fridaynightfunkin.net/friday-night-funkin-mods-fnf-play-online/">FNF</a></div>
+			<style>
+				.mapouter {
+					position: relative;
+					text-align: right;
+					width: 100%;
+					height: 600px;
+				}
+
+				.gmap_canvas {
+					overflow: hidden;
+					background: none !important;
+					width: 100%;
+					height: 600px;
+				}
+
+				.gmap_iframe {
+					height: 600px !important;
+				}
+			</style>
+		</div>
+	</div>
+</div>
+</div>
+
+
+{% endblock %}
